@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var time : CGFloat = 0
     @State private var dp = CGPoint(x:150, y:150) //touch point that decideds distance
     @State private var numberofdots : CGFloat = 38
-    let timer = Timer.publish(every: 1/30, on: .main, in: .common).autoconnect()
+//    let timer = Timer.publish(every: 1/30, on: .main, in: .common).autoconnect()
     var body: some View {
         ZStack{
 
@@ -35,6 +35,13 @@ struct ContentView: View {
                     .font(.system(size:15))
                     .bold()
                     .padding()
+                
+                HStack{
+                    Text("time")
+                    Slider(value:$time, in:0...360)
+                    Text("\(time, specifier: "%.3f")")
+                }
+
                 HStack{
                     Text("strength")
                     Slider(value:$strength, in:0...0.003)
@@ -49,9 +56,9 @@ struct ContentView: View {
             .tint(Color.yellow)
             .font(.system(size: 12, design: .monospaced))
             .padding()
-            .onReceive(timer) { _ in
-                time += 0.01
-            }
+//            .onReceive(timer) { _ in
+//                time += 0.01
+//            }
             
 
         }
